@@ -53,6 +53,7 @@ Usage
 Plugins
 ----------------------
 
+* gmarik/vundle
 * tpope/vim-fugitive.git
 * scrooloose/nerdtree.git
 * scrooloose/nerdcommenter.git
@@ -61,8 +62,11 @@ Plugins
 * tpope/vim-surround.git
 * kien/ctrlp.vim.git
 * fholgado/minibufexpl.vim.git
-* msanders/snipmate.vim.git
 * joonty/vim-phpqa.git
+* MarcWeber/vim-addon-mw-utils.git
+* tomtom/tlib_vim.git
+* honza/snipmate-snippets.git
+* garbas/vim-snipmate.git
 * taglist.vim
 * php.vim
 * phpcomplete.vim
