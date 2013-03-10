@@ -17,17 +17,21 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'scrooloose/nerdcommenter.git'
-Bundle 'Lokaltog/vim-powerline.git'
+Bundle 'Lokaltog/powerline.git'
 Bundle 'ervandew/supertab.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'fholgado/minibufexpl.vim.git'
-Bundle 'msanders/snipmate.vim.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'joonty/vim-phpqa'
+Bundle 'joonty/vim-phpqa.git'
+    " Snipmate dependencies
+    Bundle "MarcWeber/vim-addon-mw-utils.git"
+    Bundle "tomtom/tlib_vim.git"
+    Bundle "honza/snipmate-snippets.git"
+Bundle 'garbas/vim-snipmate.git'
 " vim-scripts repos
 Bundle 'taglist.vim'
 Bundle 'php.vim'
+Bundle 'phpcomplete.vim'
 " non github repos
 " ...
 
@@ -80,12 +84,12 @@ filetype plugin indent on     " required!
       let g:solarized_contrast="high"
       colorscheme solarized
       if has("gui_gtk2")
-          "set guifont=Andale\ Mono\ Regular\ 11,Menlo\ Regular\ 11,Consolas\ Regular\ 11,Courier\ New\ Regular\ 11
+          set guifont=Inconsolata\ for\ Powerline\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 11,Courier\ New\ Regular\ 11
       else
-          set guifont=Andale\ Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
+          set guifont=Inconsolata\ 12,Andale\ Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
       endif
   else
-      colorscheme desertEx
+      colorscheme desert
   endif
 
 " EDITING
@@ -100,6 +104,9 @@ filetype plugin indent on     " required!
   set shiftwidth=4              "
   set expandtab                 " We do not want tabs, do we?
   set listchars=trail:¤,tab:>-
+
+  set completeopt=menuone,preview " Omnicompletion doesn't open menu
+  au BufRead,BufNewFile *.twig set filetype=jinja " Using jinja syntax for twig files
 
 " Folding
   set foldenable                                   " enable folding
@@ -143,6 +150,9 @@ filetype plugin indent on     " required!
   map <S-F2> :NERDTreeFind<CR>
   let NERDTreeKeepTreeInNewTab=1
 
+  " Powerline
+  set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
   " ctrlp {
   let g:ctrlp_working_path_mode = 2
   let g:ctrlp_map = '<c-p>'
@@ -152,6 +162,12 @@ filetype plugin indent on     " required!
       \ 'file': '\.exe$\|\.so$\|\.dll$' }
 
   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+
+  " Exuberant CTags
+  set tags=local.tags
+
+  " SuperTab
+  let g:SuperTabDefaultCompletionType = "<c-p>"
 
   " TagList settings {
   let Tlist_Auto_Open=0
@@ -165,16 +181,20 @@ filetype plugin indent on     " required!
   let g:miniBufExplMapCTabSwitchBufs = 1 
   let g:miniBufExplModSelTarget = 1 
 
+  " snipMate
+  let g:snips_author = 'Jeremy Marin'
+  let g:snipMate = {}
+  let g:snipMate.scope_aliases = {}
+  let g:snipMate.scope_aliases['php'] = 'php'
+  let g:snipMate.scope_aliases['phtml'] = 'php,html'
+  let g:snipMate.scope_aliases['twig'] = 'html'
+
+  " phpmd and CodeSniffer
+  let g:phpqa_messdetector_ruleset = "~/.vim/rulesets/phpmd.xml"
+  let g:phpqa_codesniffer_args = "--standard=Zend"
+    " Don't run codesniffer on save (default = 1)
+    let g:phpqa_codesniffer_autorun = 0
+
   nnoremap <f2> :NERDTreeToggle<CR>
   nnoremap <f3> :TlistToggle<CR>
 
-" Vim snippets location
-let g:snippets_dir = "~/.vim/snippets/"
-
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-        \                   'active_filetypes' : [],
-        \                   'passive_filetypes' : ['php'] }
