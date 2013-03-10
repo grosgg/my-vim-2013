@@ -83,6 +83,7 @@ filetype plugin indent on     " required!
       let g:solarized_style="dark"
       let g:solarized_contrast="high"
       colorscheme solarized
+      set lines=35 columns=100
       if has("gui_gtk2")
           set guifont=Inconsolata\ for\ Powerline\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 11,Courier\ New\ Regular\ 11
       else
