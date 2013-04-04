@@ -107,7 +107,7 @@ filetype plugin indent on     " required!
   set listchars=trail:¤,tab:>-
 
   set completeopt=menuone,preview " Omnicompletion doesn't open menu
-  au BufRead,BufNewFile *.twig set filetype=jinja " Using jinja syntax for twig files
+  au BufRead,BufNewFile *.twig set filetype=htmljinja " Using jinja syntax for twig files
 
 " Folding
   set foldenable                                   " enable folding
@@ -193,8 +193,8 @@ filetype plugin indent on     " required!
   " phpmd and CodeSniffer
   let g:phpqa_messdetector_ruleset = "~/.vim/rulesets/phpmd.xml"
   let g:phpqa_codesniffer_args = "--standard=Zend"
-    " Don't run codesniffer on save (default = 1)
-    let g:phpqa_codesniffer_autorun = 0
+  let g:phpqa_codesniffer_autorun = 0 " Don't run codesniffer on save (default = 1)
+  let g:phpqa_open_loc = 0 " Keep location list closed by default
 
   nnoremap <f2> :NERDTreeToggle<CR>
   nnoremap <f3> :TlistToggle<CR>
