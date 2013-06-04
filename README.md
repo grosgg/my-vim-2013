@@ -9,13 +9,14 @@ Installation
 
         git clone git://github.com/grosgg/myvim.git --recurse-submodules
 
-2. Install the plugins through vundle
-
-        vim +BundleInstall +qall
-
-3. Link your .vim to your new config folder
+2. Link your .vim to your new config folder
 
         ln -s myvim/ .vim
+        ln -s myvim/vimrc .vimrc
+
+3. Install the plugins through vundle
+
+        vim +BundleInstall +qall
 
 4. Install exuberant-ctags
 
